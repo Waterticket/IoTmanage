@@ -4,29 +4,41 @@
 <head>
     <title>기기 등록</title>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="../styles/everywhere.css">
+    <link rel="stylesheet" href="../styles/registerDevice.css">
 </head>
 
 <body>
-<h1>기기 등록</h1>
+    <h1>기기 등록</h1>
 
-<form>
-<!--    실제 모듈 종류 및 value 지정 필요-->
-    <label for="module_type-select">모듈 종류 : </label>
-    <select name="module_type" id="module_type-select">
-    <option value="">선택해주세요</option>
-    <option value="">전등</option>
-    <option value="">창문</option>
-    <option value="">블라인드</option>
-    <option value="">가스</option>
-    </select>
+    <main class="container">
+        <form class="grid">
+            <!--    실제 모듈 종류 및 value 지정 필요-->
+            <label for="module_type-select">모듈 종류 : </label>
+            <select name="module_type" id="module_type-select">
+                <option value="">선택해주세요</option>
+                <option value="">전등</option>
+                <option value="">창문</option>
+                <option value="">블라인드</option>
+                <option value="">가스</option>
+            </select>
 
-    <label for="module_name-text">모듈 이름 : </label>
-    <input type="text" name="module_name" id="module_name-text">
+            <label for="module_name-text">모듈 이름 : </label>
+            <input type="text" name="module_name" id="module_name-text" placeholder="ex) 거실 창문">
 
-    <label for="module_owner-text">소유자명 : </label>
-    <input type="text" name="module_owner" id="module_owner-text">
+            <label for="module_owner-text">소유자명 : </label>
+            <input type="text" name="module_owner" id="module_owner-text" placeholder="ex) 김영상">
 
-</form>
+            <input id="submit" type="submit" value="등록">
+        </form>
+    </main>
+
+    <!-- <script>
+    function checkValue() {
+
+    }
+    document.getElementById("submit").onsubmit = checkValue();
+</script> -->
 </body>
 
 </html>

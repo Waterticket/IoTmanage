@@ -1,0 +1,16 @@
+@charset "utf-8";
+
+* {
+  color: black;
+}
+
+h1 {
+  text-align: center;
+  font-size: 40pt;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
