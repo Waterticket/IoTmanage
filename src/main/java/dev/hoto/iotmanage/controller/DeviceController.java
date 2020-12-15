@@ -6,6 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -16,25 +20,28 @@ public class DeviceController {
 
     @GetMapping("/register")
     public String registerDevice() {
+        // 디바이스 추가 페이지
         return "registerDevice";
     }
 
-    @GetMapping("/register/submit")
+    @PostMapping("/register")
     public String saveRegistered(HttpServletRequest request) {
-        String moduleType = request.getParameter("module_type");
+        String moduleType = request.getParameter("module_type");  // post로 받아온 데이터 가져오기
         String moduleName = request.getParameter("module_name");
         String moduleOwner = request.getParameter("module_owner");
+        IoTDevice device = new IoTDevice(moduleType, moduleName, moduleOwner, 0, 0); // DI 처리
 
-        System.out.println(moduleType + ", " + moduleName + ", " + moduleOwner);
-
-
-        return "showDevice";
+        deviceService.InsertDevice(device); // 디바이스 정보 저장
+        return "redirect:/"; // 메인 페이지로 가기
     }
+    
 
     @GetMapping("/show")
     public String showDevices() {
-
-        System.out.println("showDevices");
+        List<IoTDevice> list = deviceService.getDevices();
+        
+        /* @todo 여기에서 값 넣기 */
+        
         return "showDevice";
     }
 
