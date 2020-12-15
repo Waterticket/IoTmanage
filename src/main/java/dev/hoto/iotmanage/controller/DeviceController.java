@@ -24,7 +24,7 @@ public class DeviceController {
         return "registerDevice";
     }
 
-    @PostMapping("/register")
+    @PostMapping("/register/submit")
     public String saveRegistered(HttpServletRequest request) {
         String moduleType = request.getParameter("module_type");  // post로 받아온 데이터 가져오기
         String moduleName = request.getParameter("module_name");
@@ -34,14 +34,14 @@ public class DeviceController {
         deviceService.InsertDevice(device); // 디바이스 정보 저장
         return "redirect:/"; // 메인 페이지로 가기
     }
-    
+
 
     @GetMapping("/show")
-    public String showDevices() {
+    public String showDevices(Model model) {
         List<IoTDevice> list = deviceService.getDevices();
-        
-        /* @todo 여기에서 값 넣기 */
-        
+
+        model.addAttribute("deviceList", list);
+
         return "showDevice";
     }
 
