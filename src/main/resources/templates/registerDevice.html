@@ -4,15 +4,15 @@
 <head>
     <title>기기 등록</title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/everywhere.css">
-    <link rel="stylesheet" href="/css/registerDevice.css">
+    <link rel="stylesheet" href="../static/css/everywhere.css">
+    <link rel="stylesheet" href="../static/css/registerDevice.css">
 </head>
 
 <body>
     <h1>기기 등록</h1>
 
     <main class="container">
-        <form class="grid" action="/register/submit">
+        <form class="grid" action="/register" method="post">
             <!--    실제 모듈 종류 및 value 지정 필요-->
             <label for="module_type-select">모듈 종류 : </label>
             <select name="module_type" id="module_type-select">
@@ -32,6 +32,13 @@
             <input id="submit" type="submit" value="등록">
         </form>
     </main>
+
+    <!-- <script>
+    function checkValue() {
+        
+    }
+    document.getElementById("submit").onsubmit = checkValue();
+</script> -->
 </body>
 
 </html>
