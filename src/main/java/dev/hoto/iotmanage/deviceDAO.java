@@ -63,7 +63,7 @@ public class deviceDAO {
     public ResultSet getDevices() {
         String sql = "SELECT * FROM iot_devices";
 
-        if (connect()) {
+        if (this.connect()) {
             try {
                 stmt = conn.createStatement();
                 if(stmt != null){ //위 객체가 Null이 아니라는 것은 무언가를 받아왔다는 의미. SQL문장을 받아온 것.
@@ -82,8 +82,6 @@ public class deviceDAO {
 
         return rs;
     }
-
-
 
     //Goods 테이블에 데이터를 삽입하는 메서드 (Goods테이블은 DB의 테이블)
     public boolean InsertDevice(IoTDevice device){
@@ -113,7 +111,43 @@ public class deviceDAO {
             }
 
         }else {
-            System.out.println("데이터베이스 연결에 실패");
+            System.out.println("데이터베이스 연결 실패");
+            System.exit(0);
+        }
+
+        return result;
+    }
+
+    public boolean DeleteDevice(IoTDevice device)
+    {
+        return this.DeleteDeviceById(device.getId());
+    }
+
+    public boolean DeleteDeviceById(int moduleId)
+    {
+        boolean result = false;
+
+        if(this.connect()){
+            try {
+                String sql = "DELETE FROM iot_devices WHERE id = ?;";
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                pstmt.setInt(1, moduleId);
+
+                int r = pstmt.executeUpdate();
+
+                if(r>0){
+                    result = true;
+                }
+
+                //데이터베이스 생성 객체 해제
+                pstmt.close();
+                this.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+
+        }else {
+            System.out.println("데이터베이스 연결 실패");
             System.exit(0);
         }
 

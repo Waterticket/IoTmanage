@@ -56,4 +56,6 @@ public class deviceServiceImpl implements deviceService{
     {
         return deviceDAO.InsertDevice(device);
     }
+
+    public boolean DeleteDeviceById(int id) { return deviceDAO.DeleteDeviceById(id); }
 }
