@@ -46,8 +46,6 @@ public class deviceDAO {
         return result;
     }
 
-
-
     // 데이터베이스 연결을 해제하는 메서드
     private void close() {
         try {

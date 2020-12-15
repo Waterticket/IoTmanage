@@ -1,4 +1,4 @@
-package dev.hoto.iotmanage.Service;
+package dev.hoto.iotmanage.service;
 
 import dev.hoto.iotmanage.IoTDevice;
 import org.springframework.stereotype.Service;
@@ -8,8 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Service("deviceDBService")
-public class deviceDBService {
+@Service("deviceService")
+public class deviceServiceImpl implements deviceService{
     protected dev.hoto.iotmanage.deviceDAO deviceDAO = dev.hoto.iotmanage.deviceDAO.sharedInstance();
 
     public List<IoTDevice> getDevices()
