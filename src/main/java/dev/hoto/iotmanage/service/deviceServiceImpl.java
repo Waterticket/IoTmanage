@@ -10,6 +10,7 @@ import java.util.List;
 
 @Service("deviceService")
 public class deviceServiceImpl implements deviceService{
+    // 이미 정의해둔 DAO를 싱글톤 형식으로 가져오기 위해 선언
     protected dev.hoto.iotmanage.deviceDAO deviceDAO = dev.hoto.iotmanage.deviceDAO.sharedInstance();
 
     public List<IoTDevice> getDevices()
@@ -21,21 +22,18 @@ public class deviceServiceImpl implements deviceService{
         if(rs == null) {
             // 값을 못불러옴
         }
-
-        //데이터를 저장할 리스트 생성
-        //구문 실행에 성공했을 때 객체를 생성하게 해서
-        //리턴하는 값이 null이면 데이터베이스 작업에 실패한 것이고
-        //size()가 0이면 데이터가 없다는 것을 구분하기 위한 것입니다.
+        
+        // 리스트를 통해 데이터를 한번에 전송하기 위함
         list = new ArrayList<IoTDevice>();
 
-        //데이터를 읽어서 list에 저장
+        // 데이터를 읽어서 list에 저장
         try {
-            while (rs.next()) {
-                //DTO 클래스의 객체 생성. (모든 데이터가 DTO클래스에 들어있으므로)
+            while (rs.next()) { // 값이 있는 동안 반복
+                // DTO 클래스 객체 생성
                 IoTDevice device = new IoTDevice();
 
-                //DTO클래스의 변수에 값을 세팅하기 위해 Set메서드를 이용하고.
-                //Select의 결과를 컬럼 단위로 읽어오기 위해서 'get변수타입(컬럼명)' 메서드를 이용
+                // DTO 클래스 변수에 값을 세팅하기 위해 Set 메서드를 이용하고.
+                // DB에 Select 결과를 컬럼 단위로 읽어오기 위해서 'get변수타입("컬럼명")' 함수를 사용
                 device.setId(rs.getInt("id"));
                 device.setType(rs.getString("type"));
                 device.setNickname(rs.getString("nickname"));

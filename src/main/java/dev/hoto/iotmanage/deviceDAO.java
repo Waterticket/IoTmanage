@@ -60,15 +60,16 @@ public class deviceDAO {
         }
     }
 
+    // 디바이스 리스트 가져오기
     public ResultSet getDevices() {
         String sql = "SELECT * FROM iot_devices";
 
         if (this.connect()) {
             try {
                 stmt = conn.createStatement();
-                if(stmt != null){ //위 객체가 Null이 아니라는 것은 무언가를 받아왔다는 의미. SQL문장을 받아온 것.
-                    //sql구문 실행 (Select문의 결과는 ResultSet에 저장. (위에서 선언))
+                if(stmt != null){ // DB에 접속했을 경우
                     rs = stmt.executeQuery(sql);
+                    // 데이터를 받아와 ResultSet에 저장
                 }
             } catch (SQLException e) {
                 // TODO Auto-generated catch block
@@ -80,19 +81,19 @@ public class deviceDAO {
             System.exit(0);
         }
 
-        return rs;
+        return rs; // ResultSet 리턴
     }
 
-    //Goods 테이블에 데이터를 삽입하는 메서드 (Goods테이블은 DB의 테이블)
+    //iot_devices 테이블에 데이터를 삽입하는 메서드
     public boolean InsertDevice(IoTDevice device){
         boolean result = false;
 
         if(this.connect()){
             try {
-                String sql = "INSERT INTO iot_devices(type,nickname,owner,power,status) VALUES (?,?,?,?,?);"; //모든 컬럼에 값을 넣으므로 컬럼명 생략.
-                PreparedStatement pstmt = conn.prepareStatement(sql);
+                String sql = "INSERT INTO iot_devices(type,nickname,owner,power,status) VALUES (?,?,?,?,?);";
+                PreparedStatement pstmt = conn.prepareStatement(sql); // 데이터를 넣기 위해 prepared statement 삽입
 
-                pstmt.setString(1, device.getType());
+                pstmt.setString(1, device.getType()); // 각 ?에 값을 집어 넣는다
                 pstmt.setString(2, device.getNickname());
                 pstmt.setString(3, device.getOwner());
                 pstmt.setInt(4, device.getPower());
@@ -100,7 +101,7 @@ public class deviceDAO {
 
                 int r = pstmt.executeUpdate();
 
-                if(r>0){
+                if(r>0){ // 쿼리를 성공했을경우 양수 리턴
                     result = true;
                 }
                 //데이터베이스 생성 객체 해제
@@ -118,18 +119,14 @@ public class deviceDAO {
         return result;
     }
 
-    public boolean DeleteDevice(IoTDevice device)
-    {
-        return this.DeleteDeviceById(device.getId());
-    }
-
+    // id를 사용해 디바이스 제거
     public boolean DeleteDeviceById(int moduleId)
     {
         boolean result = false;
 
-        if(this.connect()){
+        if(this.connect()){ // DB에 연결되었을 경우
             try {
-                String sql = "DELETE FROM iot_devices WHERE id = ?;";
+                String sql = "DELETE FROM iot_devices WHERE id = ?;"; // id가 같은 데이터 제거
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 pstmt.setInt(1, moduleId);
 
