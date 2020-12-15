@@ -3,12 +3,12 @@ package dev.hoto.iotmanage;
 import java.io.Serializable;
 
 public class IoTDevice implements Serializable {
-    private int id;
-    private String type;
-    private String nickname;
-    private String owner;
-    private int power;
-    private int status;
+    private int id; // 데이터 id
+    private String type; // 기기 종류
+    private String nickname; // 기기 별명
+    private String owner; // 기기 주인
+    private int power; // 기기 전원 상태 (0 or 1)
+    private int status; // 기기 상태
 
     public IoTDevice() {
         super();
