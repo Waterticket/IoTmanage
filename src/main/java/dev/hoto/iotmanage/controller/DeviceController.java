@@ -11,27 +11,30 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 @Controller
 public class DeviceController {
     @Autowired
     deviceServiceImpl deviceService;
 
     @GetMapping("/register")
-    public String registerDevice() { 
+    public String registerDevice() {
         // 디바이스 추가 페이지
-        return  "registerDevice";
+        return "registerDevice";
     }
 
     @PostMapping("/register")
-    public String registerDevicePost(HttpServletRequest httpServletRequest, Model model) {
-        String type = httpServletRequest.getParameter("module_type"); // post로 받아온 데이터 가져오기
-        String name = httpServletRequest.getParameter("module_name");
-        String owner = httpServletRequest.getParameter("module_owner");
-        IoTDevice device = new IoTDevice(type, name, owner, 0, 0); // DI 처리
+    public String saveRegistered(HttpServletRequest request) {
+        String moduleType = request.getParameter("module_type");  // post로 받아온 데이터 가져오기
+        String moduleName = request.getParameter("module_name");
+        String moduleOwner = request.getParameter("module_owner");
+        IoTDevice device = new IoTDevice(moduleType, moduleName, moduleOwner, 0, 0); // DI 처리
 
         deviceService.InsertDevice(device); // 디바이스 정보 저장
         return "redirect:/"; // 메인 페이지로 가기
     }
+    
 
     @GetMapping("/show")
     public String showDevices() {
@@ -46,4 +49,6 @@ public class DeviceController {
     public String editDevices() {
         return "editDevice";
     }
+
+
 }

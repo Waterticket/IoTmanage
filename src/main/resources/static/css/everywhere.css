@@ -14,3 +14,15 @@ h1 {
   flex-direction: column;
   align-items: center;
 }
+
+.device-list-table {
+  border-spacing: 1vw;
+
+  min-width: 800px;
+  border: black solid 1px;
+}
+
+
+.device-list-table thead,tbody td, th {
+  text-align: center;
+}

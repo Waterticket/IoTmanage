@@ -1,28 +1,32 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>기기 조회</title>
+    <link rel="stylesheet" href="/css/everywhere.css">
 </head>
 <body>
 
 <h1>기기 조회</h1>
 
-<table>
-    <thead>
-    <tr>
-        <td>id</td>
-        <td>모듈종류</td>
-        <td>모듈이름</td>
-        <td>소유자명</td>
-        <td>ON/OFF</td>
-        <td>Status</td>
-    </tr>
-    </thead>
+<main class="container">
 
-    <tbody>
-<!--    thymeleaf 사용 예정-->
-    </tbody>
-</table>
+    <table class="device-list-table">
+        <thead>
+        <tr>
+            <td>id</td>
+            <td>모듈종류</td>
+            <td>모듈이름</td>
+            <td>소유자명</td>
+            <td>ON/OFF</td>
+            <td>Status</td>
+        </tr>
+        </thead>
+
+        <tbody>
+        </tbody>
+    </table>
+
+</main>
 </body>
 </html>
