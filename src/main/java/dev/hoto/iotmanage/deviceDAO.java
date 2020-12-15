@@ -91,15 +91,14 @@ public class deviceDAO {
 
         if(this.connect()){
             try {
-                String sql = "INSERT INTO iot_devices VALUES (?,?,?,?,?,?)"; //모든 컬럼에 값을 넣으므로 컬럼명 생략.
+                String sql = "INSERT INTO iot_devices(type,nickname,owner,power,status) VALUES (?,?,?,?,?);"; //모든 컬럼에 값을 넣으므로 컬럼명 생략.
                 PreparedStatement pstmt = conn.prepareStatement(sql);
 
-                pstmt.setInt(1, device.getId());
-                pstmt.setString(2, device.getType());
-                pstmt.setString(3, device.getNickname());
-                pstmt.setString(4, device.getOwner());
-                pstmt.setInt(5, device.getPower());
-                pstmt.setInt(6, device.getStatus());
+                pstmt.setString(1, device.getType());
+                pstmt.setString(2, device.getNickname());
+                pstmt.setString(3, device.getOwner());
+                pstmt.setInt(4, device.getPower());
+                pstmt.setInt(5, device.getStatus());
 
                 int r = pstmt.executeUpdate();
 
