@@ -1,3 +1,5 @@
+<!--기기 정보를 입력받아 DB에 저장하는 페이지-->
+
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -12,8 +14,8 @@
     <h1>기기 등록</h1>
 
     <main class="container">
-        <form class="grid" action="/register" method="post">
-            <!--    실제 모듈 종류 및 value 지정 필요-->
+        <form class="grid" action="/register/submit" method="post">
+
             <label for="module_type-select">모듈 종류 : </label>
             <select name="module_type" id="module_type-select">
                 <option selected disabled>선택해주세요</option>
