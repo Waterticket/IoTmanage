@@ -14,9 +14,8 @@ public class IoTDevice implements Serializable {
         super();
     }
 
-    public IoTDevice(int id, String type, String nickname, String owner, int power, int status) {
+    public IoTDevice(String type, String nickname, String owner, int power, int status) {
         super();
-        this.id = id;
         this.type = type;
         this.nickname = nickname;
         this.owner = owner;
