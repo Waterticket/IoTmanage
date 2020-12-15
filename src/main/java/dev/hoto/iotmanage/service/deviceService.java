@@ -5,6 +5,7 @@ import dev.hoto.iotmanage.IoTDevice;
 import java.util.List;
 
 public interface deviceService {
-    public List<IoTDevice> getDevices();
-    public boolean InsertDevice(IoTDevice device);
+    List<IoTDevice> getDevices();
+    boolean InsertDevice(IoTDevice device);
+    boolean DeleteDeviceById(int id);
 }
