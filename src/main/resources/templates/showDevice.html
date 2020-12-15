@@ -22,7 +22,14 @@
             <td>Status</td>
         </tr>
         </thead>
-
+        <tr th:each="devices : ${deviceList}">
+            <td th:text="${devices.getId()}"></td>
+            <td th:text="${devices.getType()}"></td>
+            <td th:text="${devices.getNickname()}"></td>
+            <td th:text="${devices.getOwner()}"></td>
+            <td th:text="${devices.getPower()}"></td>
+            <td th:text="${devices.getStatus()}"></td>
+        </tr>
         <tbody>
         </tbody>
     </table>

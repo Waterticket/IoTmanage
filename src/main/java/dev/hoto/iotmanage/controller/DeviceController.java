@@ -34,14 +34,14 @@ public class DeviceController {
         deviceService.InsertDevice(device); // 디바이스 정보 저장
         return "redirect:/"; // 메인 페이지로 가기
     }
-    
+
 
     @GetMapping("/show")
-    public String showDevices() {
+    public String showDevices(Model model) {
         List<IoTDevice> list = deviceService.getDevices();
 
+        model.addAttribute("deviceList", list);
 
-        
         return "showDevice";
     }
 
