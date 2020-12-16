@@ -44,7 +44,7 @@ public class DeviceController {
 
     @PostMapping("/edit")
     public String editDevices(HttpServletRequest request, Model model) {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("module_id"));
 
         IoTDevice selectedDevice = deviceService.GetDeviceById(id);
 
