@@ -43,7 +43,16 @@ public class DeviceController {
     }
 
     @PostMapping("/edit")
-    public String editDevices() {
+    public String editDevices(HttpServletRequest request, Model model) {
+        int id = Integer.parseInt(request.getParameter("id"));
+
+//        System.out.println(id);
+
+//        IoTDevice selectedDevice = deviceService.GetDeviceById(id);
+        IoTDevice selectedDevice = new IoTDevice("light", "영상", "주인장", 1, 0);
+
+        model.addAttribute("selectedDevice", selectedDevice);
+
         return "editDevice";
     }
 
