@@ -20,7 +20,6 @@
             <td>모듈이름</td>
             <td>소유자명</td>
             <td>ON/OFF</td>
-            <td>Status</td>
         </tr>
         </thead>
         <tr th:each="device : ${deviceList}" th:id="${device.getId()}"
@@ -30,7 +29,6 @@
             <td th:text="${device.getNickname()}"></td>
             <td th:text="${device.getOwner()}"></td>
             <td th:text="${device.getPower()}"></td>
-            <td th:text="${device.getStatus()}"></td>
         </tr>
         <tbody>
         </tbody>
