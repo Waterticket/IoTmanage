@@ -193,7 +193,7 @@ public class deviceDAO {
 
         if(this.connect()){
             try {
-                String sql = "UPDATE iot_devices SET type = ?, nickname = ?, owner = ?, power = ?, WHERE id = ?;";
+                String sql = "UPDATE iot_devices SET type = ?, nickname = ?, owner = ?, power = ? WHERE id = ?;";
                 PreparedStatement pstmt = conn.prepareStatement(sql); // 데이터를 넣기 위해 prepared statement 삽입
 
                 pstmt.setString(1, device.getType()); // 각 ?에 값을 집어 넣는다
