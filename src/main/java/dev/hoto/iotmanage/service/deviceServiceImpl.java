@@ -12,10 +12,7 @@ import java.util.List;
 @Service("deviceService")
 public class deviceServiceImpl implements deviceService{
     @Autowired
-    dev.hoto.iotmanage.deviceDAO deviceDAO;
-
-    // 이미 정의해둔 DAO를 싱글톤 형식으로 가져오기 위해 선언
-    //protected dev.hoto.iotmanage.deviceDAO deviceDAO = dev.hoto.iotmanage.deviceDAO.sharedInstance();
+    dev.hoto.iotmanage.deviceDAO deviceDAO; // DI 형식으로 사용하기 위해 선언
 
     public List<IoTDevice> getDevices()
     {

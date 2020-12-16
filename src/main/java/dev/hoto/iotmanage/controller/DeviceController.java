@@ -11,12 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
-import javax.servlet.http.HttpServletRequest;
-
 @Controller
 public class DeviceController {
     @Autowired
-    deviceServiceImpl deviceService;
+    deviceServiceImpl deviceService; // DI 형식으로 사용하기 위해 선언
 
     @GetMapping("/register")
     public String registerDevice() {
