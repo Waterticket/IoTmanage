@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>기기 조회</title>
     <link rel="stylesheet" href="/css/everywhere.css">
+    <script src="/js/clickToEdit.js"></script>
 </head>
 <body>
 
@@ -22,13 +23,14 @@
             <td>Status</td>
         </tr>
         </thead>
-        <tr th:each="devices : ${deviceList}">
-            <td th:text="${devices.getId()}"></td>
-            <td th:text="${devices.getType()}"></td>
-            <td th:text="${devices.getNickname()}"></td>
-            <td th:text="${devices.getOwner()}"></td>
-            <td th:text="${devices.getPower()}"></td>
-            <td th:text="${devices.getStatus()}"></td>
+        <tr th:each="device : ${deviceList}" th:id="${device.getId()}"
+            th:attr="onclick='clickToEdit('+${device.getId()}+')'" class="list-can-click">
+            <td th:text="${device.getId()}"></td>
+            <td th:text="${device.getType()}"></td>
+            <td th:text="${device.getNickname()}"></td>
+            <td th:text="${device.getOwner()}"></td>
+            <td th:text="${device.getPower()}"></td>
+            <td th:text="${device.getStatus()}"></td>
         </tr>
         <tbody>
         </tbody>
