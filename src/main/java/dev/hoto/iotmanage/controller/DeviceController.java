@@ -54,7 +54,6 @@ public class DeviceController {
 
     @PostMapping("/edit/submit")
     public String saveEdited(HttpServletRequest request) {
-        int id = Integer.parseInt(request.getParameter("module_id"));
         String type = request.getParameter("module_type");
         String nickname = request.getParameter("module_name");
         String owner = request.getParameter("module_owner");
