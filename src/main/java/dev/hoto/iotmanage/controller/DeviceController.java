@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -42,6 +43,32 @@ public class DeviceController {
         return "showDevice";
     }
 
+    @PostMapping("/show/search")
+    public String search(HttpServletRequest request, Model model) {
+        String kindOfSearch = request.getParameter("how_to_search");
+        String value = request.getParameter("value_to_search");
+
+        try {
+            if (kindOfSearch.equals("searchNickname")) {
+                List<IoTDevice> list = deviceService.searchDevicesByName(value);
+
+                model.addAttribute("deviceList", list);
+            } else if (kindOfSearch.equals("searchId")) {
+                int id = Integer.parseInt(value);
+
+                ArrayList list = new ArrayList<IoTDevice>();
+                list.add(deviceService.GetDeviceById(id));
+
+                model.addAttribute("deviceList", list);
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
+        return "showDevice";
+    }
+
+
     @PostMapping("/edit")
     public String editDevices(HttpServletRequest request, Model model) {
         int id = Integer.parseInt(request.getParameter("module_id"));
@@ -66,9 +93,7 @@ public class DeviceController {
             modifiedDevice.setId(id);
 
             deviceService.ModifyDevice(modifiedDevice);
-        }
-        catch(NumberFormatException e)
-        {
+        } catch (NumberFormatException e) {
             e.printStackTrace();
         }
 
