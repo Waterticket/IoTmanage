@@ -39,13 +39,12 @@ public class DeviceController {
     @GetMapping("/show")
     public String showDevices(Model model) {
         List<IoTDevice> list = deviceService.getDevices();
-
         model.addAttribute("deviceList", list);
 
         return "showDevice";
     }
 
-    @GetMapping("/edit")
+    @PostMapping("/edit")
     public String editDevices() {
         return "editDevice";
     }
