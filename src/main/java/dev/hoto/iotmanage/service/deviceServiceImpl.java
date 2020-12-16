@@ -120,4 +120,6 @@ public class deviceServiceImpl implements deviceService{
 
         return list;
     }
+
+    public boolean ModifyDevice(IoTDevice device) { return deviceDAO.ModifyDevice(device); }
 }

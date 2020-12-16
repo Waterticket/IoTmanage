@@ -169,6 +169,7 @@ public class deviceDAO {
         return rs; // ResultSet 리턴
     }
 
+    // 이름으로 디바이스 검색
     public ResultSet searchDevicesByName(String name)
     {
         String sql = "SELECT * FROM iot_devices WHERE nickname LIKE ?";
@@ -193,5 +194,42 @@ public class deviceDAO {
         }
 
         return rs; // ResultSet 리턴
+    }
+
+    // 디바이스 데이터 수정
+    public boolean ModifyDevice(IoTDevice device)
+    {
+        boolean result = false;
+
+        if(this.connect()){
+            try {
+                String sql = "UPDATE iot_devices SET type = ?, nickname = ?, owner = ?, power = ?, status = ? WHERE id = ?;";
+                PreparedStatement pstmt = conn.prepareStatement(sql); // 데이터를 넣기 위해 prepared statement 삽입
+
+                pstmt.setString(1, device.getType()); // 각 ?에 값을 집어 넣는다
+                pstmt.setString(2, device.getNickname());
+                pstmt.setString(3, device.getOwner());
+                pstmt.setInt(4, device.getPower());
+                pstmt.setInt(5, device.getStatus());
+                pstmt.setInt(6, device.getId());
+
+                int r = pstmt.executeUpdate();
+
+                if(r>0){ // 쿼리를 성공했을경우 양수 리턴
+                    result = true;
+                }
+                //데이터베이스 생성 객체 해제
+                pstmt.close();
+                this.close();
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+
+        }else {
+            System.out.println("데이터베이스 연결 실패");
+            System.exit(0);
+        }
+
+        return result;
     }
 }
