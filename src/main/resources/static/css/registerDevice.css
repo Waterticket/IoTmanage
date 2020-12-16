@@ -1,18 +1,23 @@
 .grid {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
-  max-width: 800px;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    max-width: 800px;
 }
 
 .grid * {
-  margin: 1vh;
-  font-size: 16pt;
+    margin: 1vh;
+    font-size: 16pt;
 }
 
 .grid label {
-  grid-column: 1;
+    grid-column: 1;
 }
 
-.grid #submit {
-  grid-column: 1/3;
+.grid input[type=submit] {
+    grid-column: 1/3;
+}
+
+#delete {
+    grid-column: 1/3;
+    color: red;
 }

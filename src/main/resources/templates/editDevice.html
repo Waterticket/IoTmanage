@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html lang="ko">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>기기 정보 수정</title>
+    <link rel="stylesheet" href="/css/everywhere.css">
+    <link rel="stylesheet" href="/css/registerDevice.css">
 </head>
 <body>
-<!--검색 => 선택 => 수정 => 제출 이런 흐름..?-->
+
+<h1>기기 삭제</h1>
+
+<main class="container">
+    <form class="grid">
+
+        <label for="module_id">id</label>
+        <input name="module_id" id="module_id" th:placeholder="${selectedDevice.getId()}"
+               th:value="${selectedDevice.getId()}" disabled>
+
+        <label for="module_type">모듈종류</label>
+        <input type="text" name="module_type" id="module_type" th:placeholder="${selectedDevice.getType()}"
+               th:value="${selectedDevice.getType()}">
+
+        <label for="module_name">모듈이름</label>
+        <input type="text" name="module_name" id="module_name" th:placeholder="${selectedDevice.getNickname()}"
+               th:value="${selectedDevice.getNickname()}">
+
+        <label for="module_owner">소유자명</label>
+        <input type="text" name="module_owner" id="module_owner" th:placeholder="${selectedDevice.getOwner()}"
+               th:value="${selectedDevice.getOwner()}">
+
+        <label for="module_power">ON/OFF</label>
+        <input type="text" name="module_power" id="module_power" th:placeholder="${selectedDevice.getPower()}"
+               th:value="${selectedDevice.getPower()}">
+
+        <label for="module_status">Status</label>
+        <input type="text" name="module_status" id="module_status" th:placeholder="${selectedDevice.getStatus()}"
+               th:value="${selectedDevice.getStatus()}"
+               disabled>
+
+        <input type="submit" id="edit" value="수정">
+
+        <input type="button" id="delete" value="삭제">
+    </form>
+
+</main>
 </body>
 </html>
