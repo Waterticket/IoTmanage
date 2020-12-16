@@ -52,6 +52,22 @@ public class DeviceController {
         return "editDevice";
     }
 
+    @PostMapping("/edit/submit")
+    public String saveEdited(HttpServletRequest request) {
+        String type = request.getParameter("module_type");
+        String nickname = request.getParameter("module_name");
+        String owner = request.getParameter("module_owner");
+        int power = Integer.parseInt(request.getParameter("module_power"));
+        int status = Integer.parseInt(request.getParameter("module_status"));
+
+        IoTDevice modifiedDevice = new IoTDevice(type, nickname, owner, power, status);
+
+        deviceService.ModifyDevice(modifiedDevice);
+
+        return "redirect:/";
+    }
+
+
     @PostMapping("/delete")
     public String deleteDevice(HttpServletRequest request) {
         int moduleId = Integer.parseInt(request.getParameter("module_id"));  // post로 받아온 데이터 가져오기

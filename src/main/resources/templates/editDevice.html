@@ -11,7 +11,7 @@
 <h1>기기 삭제</h1>
 
 <main class="container">
-    <form class="grid">
+    <form class="grid" action="edit/submit" method="post">
 
         <label for="module_id">id</label>
         <input name="module_id" id="module_id" th:placeholder="${selectedDevice.getId()}"
