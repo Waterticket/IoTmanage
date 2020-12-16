@@ -10,7 +10,7 @@ public class deviceDAO {
         // 객체가 생성되기 전에 수행되기 때문에 멤버 변수 사용은 안됩니다.
 
         try {
-            Class.forName("org.mariadb.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver"); // org.mariadb.jdbc.Driver
         } catch (ClassNotFoundException e) {
             System.out.println("클래스 로드 실패 : " + e.getMessage());
         }
@@ -37,7 +37,7 @@ public class deviceDAO {
     private boolean connect() {
         boolean result = false;
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dimigo","root","ysk0525");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/dimigo?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Seoul","root","q1w2e3r4");
             result = true;
         } catch (Exception e) {
             System.out.println("연결 실패 : " + e.getMessage());
