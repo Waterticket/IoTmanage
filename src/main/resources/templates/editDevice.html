@@ -20,8 +20,13 @@
                th:value="${selectedDevice.getId()}" readonly>
 
         <label for="module_type">모듈종류</label>
-        <input type="text" name="module_type" id="module_type" th:placeholder="${selectedDevice.getType()}"
-               th:value="${selectedDevice.getType()}">
+        <select name="module_type" id="module_type">
+            <option selected disabled th:text="${selectedDevice.getType()}"></option>
+            <option value="전등">전등</option>
+            <option value="창문">창문</option>
+            <option value="블라인드">블라인드</option>
+            <option value="가스">가스</option>
+        </select>
 
         <label for="module_name">모듈이름</label>
         <input type="text" name="module_name" id="module_name" th:placeholder="${selectedDevice.getNickname()}"
