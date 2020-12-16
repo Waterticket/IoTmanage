@@ -4,23 +4,27 @@
     <meta charset="UTF-8">
     <title>기기 조회</title>
     <link rel="stylesheet" href="/css/everywhere.css">
+    <link rel="stylesheet" href="/css/searchBar.css">
+
     <script src="/js/clickToEdit.js"></script>
 </head>
 <body>
 
 <h1>기기 조회</h1>
 
-<form class="search" action="/show/search" method="post">
-    <label for="how_to_search" hidden></label>
-    <select name="how_to_search" id="how_to_search">
-        <option value="searchNickname">모듈 이름</option>
-        <option value="searchId">ID</option>
-    </select>
+<div class="searchBox">
+    <form class="search" action="/show/search" method="post">
+        <label for="how_to_search" hidden></label>
+        <select name="how_to_search" id="how_to_search">
+            <option value="searchNickname">모듈 이름</option>
+            <option value="searchId">ID</option>
+        </select>
 
-    <label for="value_to_search" hidden></label>
-    <input type="search" name="value_to_search" id="value_to_search">
-    <input type="submit" value="검색">
-</form>
+        <label for="value_to_search" hidden></label>
+        <input type="search" name="value_to_search" id="value_to_search">
+        <input type="submit" value="검색">
+    </form>
+</div>
 
 <main class="container">
 
