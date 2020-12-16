@@ -46,13 +46,9 @@ public class DeviceController {
     public String editDevices(HttpServletRequest request, Model model) {
         int id = Integer.parseInt(request.getParameter("id"));
 
-//        System.out.println(id);
-
-//        IoTDevice selectedDevice = deviceService.GetDeviceById(id);
-        IoTDevice selectedDevice = new IoTDevice("light", "영상", "주인장", 1, 0);
+        IoTDevice selectedDevice = deviceService.GetDeviceById(id);
 
         model.addAttribute("selectedDevice", selectedDevice);
-
         return "editDevice";
     }
 

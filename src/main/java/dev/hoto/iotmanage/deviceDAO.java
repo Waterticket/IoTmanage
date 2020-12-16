@@ -143,8 +143,8 @@ public class deviceDAO {
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 pstmt.setInt(1, moduleId);
 
-                if(stmt != null){ // DB에 접속했을 경우
-                    rs = pstmt.executeQuery(sql);
+                if(pstmt != null){ // DB에 접속했을 경우
+                    rs = pstmt.executeQuery();
                     // 데이터를 받아와 ResultSet에 저장
                 }
             } catch (SQLException e) {
@@ -170,8 +170,8 @@ public class deviceDAO {
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1, "%"+name+"%");
 
-                if(stmt != null){ // DB에 접속했을 경우
-                    rs = pstmt.executeQuery(sql);
+                if(pstmt != null){ // DB에 접속했을 경우
+                    rs = pstmt.executeQuery();
                     // 데이터를 받아와 ResultSet에 저장
                 }
             } catch (SQLException e) {
