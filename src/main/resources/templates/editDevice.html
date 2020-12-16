@@ -15,7 +15,7 @@
 
         <label for="module_id">id</label>
         <input name="module_id" id="module_id" th:placeholder="${selectedDevice.getId()}"
-               th:value="${selectedDevice.getId()}" disabled>
+               th:value="${selectedDevice.getId()}" readonly>
 
         <label for="module_type">모듈종류</label>
         <input type="text" name="module_type" id="module_type" th:placeholder="${selectedDevice.getType()}"
@@ -32,11 +32,6 @@
         <label for="module_power">ON/OFF</label>
         <input type="text" name="module_power" id="module_power" th:placeholder="${selectedDevice.getPower()}"
                th:value="${selectedDevice.getPower()}">
-
-        <label for="module_status">Status</label>
-        <input type="text" name="module_status" id="module_status" th:placeholder="${selectedDevice.getStatus()}"
-               th:value="${selectedDevice.getStatus()}"
-               disabled>
 
         <input type="submit" id="edit" value="수정">
 

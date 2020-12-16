@@ -8,19 +8,17 @@ public class IoTDevice implements Serializable {
     private String nickname; // 기기 별명
     private String owner; // 기기 주인
     private int power; // 기기 전원 상태 (0 or 1)
-    private int status; // 기기 상태
 
     public IoTDevice() {
         super();
     }
 
-    public IoTDevice(String type, String nickname, String owner, int power, int status) {
+    public IoTDevice(String type, String nickname, String owner, int power) {
         super();
         this.type = type;
         this.nickname = nickname;
         this.owner = owner;
         this.power = power;
-        this.status = status;
     }
 
     public int getId() { return id; }
@@ -57,13 +55,5 @@ public class IoTDevice implements Serializable {
 
     public void setPower(int power) {
         this.power = power;
-    }
-
-    public int getStatus() {
-        return status;
-    }
-
-    public void setStatus(int status) {
-        this.status = status;
     }
 }

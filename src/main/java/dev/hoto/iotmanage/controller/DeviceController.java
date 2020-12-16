@@ -27,7 +27,7 @@ public class DeviceController {
         String moduleType = request.getParameter("module_type");  // post로 받아온 데이터 가져오기
         String moduleName = request.getParameter("module_name");
         String moduleOwner = request.getParameter("module_owner");
-        IoTDevice device = new IoTDevice(moduleType, moduleName, moduleOwner, 0, 0); // DI 처리
+        IoTDevice device = new IoTDevice(moduleType, moduleName, moduleOwner, 0); // DI 처리
 
         deviceService.InsertDevice(device); // 디바이스 정보 저장
         return "redirect:/"; // 메인 페이지로 가기
@@ -54,15 +54,23 @@ public class DeviceController {
 
     @PostMapping("/edit/submit")
     public String saveEdited(HttpServletRequest request) {
-        String type = request.getParameter("module_type");
-        String nickname = request.getParameter("module_name");
-        String owner = request.getParameter("module_owner");
-        int power = Integer.parseInt(request.getParameter("module_power"));
-        int status = Integer.parseInt(request.getParameter("module_status"));
+        IoTDevice modifiedDevice = null;
+        try {
+            int id = Integer.parseInt(request.getParameter("module_id"));
+            String type = request.getParameter("module_type");
+            String nickname = request.getParameter("module_name");
+            String owner = request.getParameter("module_owner");
+            int power = Integer.parseInt(request.getParameter("module_power"));
 
-        IoTDevice modifiedDevice = new IoTDevice(type, nickname, owner, power, status);
+            modifiedDevice = new IoTDevice(type, nickname, owner, power);
+            modifiedDevice.setId(id);
 
-        deviceService.ModifyDevice(modifiedDevice);
+            deviceService.ModifyDevice(modifiedDevice);
+        }
+        catch(NumberFormatException e)
+        {
+            e.printStackTrace();
+        }
 
         return "redirect:/";
     }

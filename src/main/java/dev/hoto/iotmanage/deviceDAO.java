@@ -73,14 +73,13 @@ public class deviceDAO {
 
         if(this.connect()){
             try {
-                String sql = "INSERT INTO iot_devices(type,nickname,owner,power,status) VALUES (?,?,?,?,?);";
+                String sql = "INSERT INTO iot_devices(type,nickname,owner,power) VALUES (?,?,?,?);";
                 PreparedStatement pstmt = conn.prepareStatement(sql); // 데이터를 넣기 위해 prepared statement 삽입
 
                 pstmt.setString(1, device.getType()); // 각 ?에 값을 집어 넣는다
                 pstmt.setString(2, device.getNickname());
                 pstmt.setString(3, device.getOwner());
                 pstmt.setInt(4, device.getPower());
-                pstmt.setInt(5, device.getStatus());
 
                 int r = pstmt.executeUpdate();
 
@@ -194,15 +193,14 @@ public class deviceDAO {
 
         if(this.connect()){
             try {
-                String sql = "UPDATE iot_devices SET type = ?, nickname = ?, owner = ?, power = ?, status = ? WHERE id = ?;";
+                String sql = "UPDATE iot_devices SET type = ?, nickname = ?, owner = ?, power = ?, WHERE id = ?;";
                 PreparedStatement pstmt = conn.prepareStatement(sql); // 데이터를 넣기 위해 prepared statement 삽입
 
                 pstmt.setString(1, device.getType()); // 각 ?에 값을 집어 넣는다
                 pstmt.setString(2, device.getNickname());
                 pstmt.setString(3, device.getOwner());
                 pstmt.setInt(4, device.getPower());
-                pstmt.setInt(5, device.getStatus());
-                pstmt.setInt(6, device.getId());
+                pstmt.setInt(5, device.getId());
 
                 int r = pstmt.executeUpdate();
 

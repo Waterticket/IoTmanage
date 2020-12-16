@@ -40,7 +40,6 @@ public class deviceServiceImpl implements deviceService{
                 device.setNickname(rs.getString("nickname"));
                 device.setOwner(rs.getString("owner"));
                 device.setPower(rs.getInt("power"));
-                device.setStatus(rs.getInt("status"));
 
                 list.add(device);
             }
@@ -72,7 +71,6 @@ public class deviceServiceImpl implements deviceService{
                 device.setNickname(rs.getString("nickname"));
                 device.setOwner(rs.getString("owner"));
                 device.setPower(rs.getInt("power"));
-                device.setStatus(rs.getInt("status"));
             }
         }catch (SQLException throwables) {
             throwables.printStackTrace();
@@ -107,7 +105,6 @@ public class deviceServiceImpl implements deviceService{
                 device.setNickname(rs.getString("nickname"));
                 device.setOwner(rs.getString("owner"));
                 device.setPower(rs.getInt("power"));
-                device.setStatus(rs.getInt("status"));
 
                 list.add(device);
             }
