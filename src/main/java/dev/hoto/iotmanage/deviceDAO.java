@@ -1,9 +1,12 @@
 package dev.hoto.iotmanage;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Component
 public class deviceDAO {
     static {
         // 여기에 작성한 내용을 클래스가 메모리에 로드될 때 딱 1번만 수행됩니다. (다시는 수행 안함)
@@ -14,18 +17,6 @@ public class deviceDAO {
         } catch (ClassNotFoundException e) {
             System.out.println("클래스 로드 실패 : " + e.getMessage());
         }
-    }
-
-    private deviceDAO() {}
-
-    private static deviceDAO obj;
-
-    public static deviceDAO sharedInstance(){
-        if(obj == null)
-        {
-            obj = new deviceDAO();
-        }
-        return obj;
     }
 
     private Connection conn;

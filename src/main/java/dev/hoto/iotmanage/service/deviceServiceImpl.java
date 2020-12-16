@@ -1,6 +1,7 @@
 package dev.hoto.iotmanage.service;
 
 import dev.hoto.iotmanage.IoTDevice;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.ResultSet;
@@ -10,8 +11,11 @@ import java.util.List;
 
 @Service("deviceService")
 public class deviceServiceImpl implements deviceService{
+    @Autowired
+    dev.hoto.iotmanage.deviceDAO deviceDAO;
+
     // 이미 정의해둔 DAO를 싱글톤 형식으로 가져오기 위해 선언
-    protected dev.hoto.iotmanage.deviceDAO deviceDAO = dev.hoto.iotmanage.deviceDAO.sharedInstance();
+    //protected dev.hoto.iotmanage.deviceDAO deviceDAO = dev.hoto.iotmanage.deviceDAO.sharedInstance();
 
     public List<IoTDevice> getDevices()
     {
