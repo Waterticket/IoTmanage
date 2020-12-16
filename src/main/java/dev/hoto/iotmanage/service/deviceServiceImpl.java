@@ -56,4 +56,27 @@ public class deviceServiceImpl implements deviceService{
     }
 
     public boolean DeleteDeviceById(int id) { return deviceDAO.DeleteDeviceById(id); }
+
+    public IoTDevice GetDeviceById(int id) {
+        ResultSet rs = deviceDAO.getDeviceById(id);
+
+        // DTO 클래스 객체 생성
+        IoTDevice device = new IoTDevice();
+
+        try {
+            while (rs.next()) { // 값이 있는 동안 반복 (id는 primary_key이기에 중복되지 않고, 즉 한번만 실행되게 된다)
+                // device 데이터를 넣는다
+                device.setId(rs.getInt("id"));
+                device.setType(rs.getString("type"));
+                device.setNickname(rs.getString("nickname"));
+                device.setOwner(rs.getString("owner"));
+                device.setPower(rs.getInt("power"));
+                device.setStatus(rs.getInt("status"));
+            }
+        }catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+
+        return device;
+    }
 }

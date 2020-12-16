@@ -55,6 +55,6 @@ public class DeviceController {
         int moduleId = Integer.parseInt(request.getParameter("module_id"));  // post로 받아온 데이터 가져오기
 
         deviceService.DeleteDeviceById(moduleId); // 해당 디바이스 제거
-        return "redirect:/"; // 메인 페이지로 가기
+        return "redirect:/show"; // show 페이지로 가기
     }
 }

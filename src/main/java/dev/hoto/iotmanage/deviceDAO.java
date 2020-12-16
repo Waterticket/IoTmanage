@@ -37,7 +37,8 @@ public class deviceDAO {
     private boolean connect() {
         boolean result = false;
         try {
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/dimigo?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Seoul","root","q1w2e3r4");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3307/dimigo" +
+                    "?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=Asia/Seoul","root","q1w2e3r4");
             result = true;
         } catch (Exception e) {
             System.out.println("연결 실패 : " + e.getMessage());
@@ -149,5 +150,31 @@ public class deviceDAO {
         }
 
         return result;
+    }
+
+    // 디바이스 리스트 가져오기
+    public ResultSet getDeviceById(int moduleId) {
+        String sql = "SELECT * FROM iot_devices WHERE id = ?";
+
+        if (this.connect()) {
+            try {
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                pstmt.setInt(1, moduleId);
+
+                if(stmt != null){ // DB에 접속했을 경우
+                    rs = pstmt.executeQuery(sql);
+                    // 데이터를 받아와 ResultSet에 저장
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        } else {
+            // 연결에 실패했을 때 작업
+            System.out.println("데이터베이스 연결에 실패했습니다.");
+            System.exit(0);
+        }
+
+        return rs; // ResultSet 리턴
     }
 }
