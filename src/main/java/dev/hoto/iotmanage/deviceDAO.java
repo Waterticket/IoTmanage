@@ -177,4 +177,30 @@ public class deviceDAO {
 
         return rs; // ResultSet 리턴
     }
+
+    public ResultSet searchDevicesByName(String name)
+    {
+        String sql = "SELECT * FROM iot_devices WHERE nickname LIKE ?";
+
+        if (this.connect()) {
+            try {
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1, "%"+name+"%");
+
+                if(stmt != null){ // DB에 접속했을 경우
+                    rs = pstmt.executeQuery(sql);
+                    // 데이터를 받아와 ResultSet에 저장
+                }
+            } catch (SQLException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        } else {
+            // 연결에 실패했을 때 작업
+            System.out.println("데이터베이스 연결에 실패했습니다.");
+            System.exit(0);
+        }
+
+        return rs; // ResultSet 리턴
+    }
 }

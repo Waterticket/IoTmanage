@@ -10,4 +10,5 @@ public interface deviceService {
     boolean InsertDevice(IoTDevice device);
     boolean DeleteDeviceById(int id);
     IoTDevice GetDeviceById(int id);
+    List<IoTDevice> searchDevicesByName(String name);
 }
