@@ -67,9 +67,11 @@ public class DeviceController {
                 int id = Integer.parseInt(value);
 
                 ArrayList list = new ArrayList<IoTDevice>();
-                list.add(deviceService.GetDeviceById(id));
-
-                model.addAttribute("deviceList", list);
+                IoTDevice device = deviceService.GetDeviceById(id);
+                if (device.getId() != 0) {
+                    list.add(device);
+                    model.addAttribute("deviceList", list);
+                }
             }
         } catch (NumberFormatException e) {
             e.printStackTrace();
