@@ -77,10 +77,12 @@ public class DeviceController {
 
         IoTDevice selectedDevice = deviceService.GetDeviceById(id);
 
-        DataProcess.changeModuleTypeToKorean(selectedDevice);
+        IoTDevice korTypeDevice = selectedDevice;
+        DataProcess.changeModuleTypeToKorean(korTypeDevice);
 
 
         model.addAttribute("selectedDevice", selectedDevice);
+        model.addAttribute("deviceKorType", korTypeDevice.getType());
         return "editDevice";
     }
 

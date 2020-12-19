@@ -21,7 +21,8 @@
 
         <label for="module_type">모듈종류</label>
         <select name="module_type" id="module_type">
-            <option selected hidden th:value="${selectedDevice.getType()}" th:text="${selectedDevice.getType()}"></option>
+            <option selected hidden th:value="${selectedDevice.getType()}"
+                    th:text="${deviceKorType}"></option>
             <option value="light">전등</option>
             <option value="window">창문</option>
             <option value="blind">블라인드</option>
