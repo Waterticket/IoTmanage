@@ -9,7 +9,6 @@ function clickToEdit(id) {
     form.submit();
 }
 function clickToDelete(id) {
-    console.log("된다??");
     const answer = confirm("정말로 삭제하시겠습니까?");
     if (!answer)
         return;
@@ -20,6 +19,13 @@ function clickToDelete(id) {
     form.appendChild(hiddenField);
     document.body.appendChild(form);
     form.submit();
+}
+function checkEditSubmit() {
+    const answer = confirm("정말로 수정하시겠습니까?");
+    if (!answer)
+        return false;
+    else
+        return true;
 }
 function getHiddenIdInput(id) {
     let hiddenField = document.createElement('input');
