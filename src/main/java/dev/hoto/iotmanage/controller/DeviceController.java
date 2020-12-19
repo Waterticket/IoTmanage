@@ -38,6 +38,7 @@ public class DeviceController {
     @GetMapping("/show")
     public String showDevices(Model model) {
         List<IoTDevice> list = deviceService.getDevices();
+        DataProcess.chModuletypesToKorean(list);
         model.addAttribute("deviceList", list);
 
         return "showDevice";
@@ -109,3 +110,40 @@ public class DeviceController {
         return "redirect:/show"; // show 페이지로 가기
     }
 }
+
+class DataProcess {
+    public static void chModuletypesToKorean(List<IoTDevice> target) {
+        String[] korTypes = {"전등", "창문", "블라인드", "가스"};
+        int index = -1;
+
+        for (IoTDevice device :
+                target) {
+            switch (device.getType()) {
+                case "light":
+                    index = 0;
+                    break;
+
+                case "window":
+                    index = 1;
+                    break;
+
+                case "blind":
+                    index = 2;
+                    break;
+
+                case "gas":
+                    index = 3;
+                    break;
+
+                default:
+                    System.out.println("잘못된 모듈 종류입니다.");
+                    System.exit(0);
+            }
+
+            device.setType(korTypes[index]);
+        }
+    }
+
+    ;
+}
+
