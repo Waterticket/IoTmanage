@@ -37,8 +37,10 @@
                th:value="${selectedDevice.getOwner()}">
 
         <label for="module_power">ON/OFF</label>
-        <input type="text" name="module_power" id="module_power" th:placeholder="${selectedDevice.getPower()}"
-               th:value="${selectedDevice.getPower()}">
+        <select name="module_power" id="module_power">
+            <option value="1" th:selected="${selectedDevice.getPower()==1}">ON</option>
+            <option value="0" th:selected="${selectedDevice.getPower()==0}">OFF</option>
+        </select>
 
         <input type="submit" id="edit" value="수정">
 
