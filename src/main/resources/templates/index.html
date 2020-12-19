@@ -8,20 +8,23 @@
     <link rel="stylesheet" href="/css/index.css">
 
     <script th:inline="javascript">
-        (()=> {
-            if([[${bIsRegistered}]]==true)
-            alert("성공적으로 저장되었습니다.");
+        (() => {
+            if ([[${bIsRegistered}]] == true)
+                alert("성공적으로 저장되었습니다.");
+
+            if ([[${bIsEdited}]] == true)
+                alert("성공적으로 수정되었습니다.")
         })();
     </script>
 </head>
 
 <body>
-    <h1>IoT 기기관리 서비스</h1>
+<h1>IoT 기기관리 서비스</h1>
 
-    <section class="container">
-        <a class="item" href="/register">기기 등록</a>
-        <a class="item" href="/show">기기 조회 & 수정</a>
-    </section> 
+<section class="container">
+    <a class="item" href="/register">기기 등록</a>
+    <a class="item" href="/show">기기 조회 & 수정</a>
+</section>
 
 </body>
 

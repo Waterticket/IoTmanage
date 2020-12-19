@@ -93,7 +93,7 @@ public class DeviceController {
     }
 
     @PostMapping("/edit/submit")
-    public String saveEdited(HttpServletRequest request) {
+    public String saveEdited(HttpServletRequest request, Model model) {
         IoTDevice modifiedDevice = null;
         try {
             int id = Integer.parseInt(request.getParameter("module_id"));
@@ -110,7 +110,9 @@ public class DeviceController {
             e.printStackTrace();
         }
 
-        return "redirect:/";
+        model.addAttribute("bIsEdited", true);
+
+        return "index";
     }
 
 
