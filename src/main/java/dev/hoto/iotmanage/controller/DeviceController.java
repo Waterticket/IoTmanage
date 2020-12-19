@@ -18,6 +18,11 @@ public class DeviceController {
     @Autowired
     deviceServiceImpl deviceService; // DI 형식으로 사용하기 위해 선언
 
+    @GetMapping("/")
+    public String home() {
+        return "index";
+    }
+
     @GetMapping("/register")
     public String registerDevice() {
         // 디바이스 추가 페이지
@@ -25,14 +30,17 @@ public class DeviceController {
     }
 
     @PostMapping("/register/submit")
-    public String saveRegistered(HttpServletRequest request) {
+    public String saveRegistered(HttpServletRequest request, Model model) {
         String moduleType = request.getParameter("module_type");  // post로 받아온 데이터 가져오기
         String moduleName = request.getParameter("module_name");
         String moduleOwner = request.getParameter("module_owner");
         IoTDevice device = new IoTDevice(moduleType, moduleName, moduleOwner, 1); // DI 처리
 
         deviceService.InsertDevice(device); // 디바이스 정보 저장
-        return "redirect:/"; // 메인 페이지로 가기
+
+        model.addAttribute("bIsRegistered", true);
+
+        return "index"; // 메인 페이지로 가기
     }
 
 
