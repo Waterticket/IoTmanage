@@ -117,11 +117,14 @@ public class DeviceController {
 
 
     @PostMapping("/delete")
-    public String deleteDevice(HttpServletRequest request) {
+    public String deleteDevice(HttpServletRequest request, Model model) {
         int moduleId = Integer.parseInt(request.getParameter("module_id"));  // post로 받아온 데이터 가져오기
 
         deviceService.DeleteDeviceById(moduleId); // 해당 디바이스 제거
-        return "redirect:/show"; // show 페이지로 가기
+
+        model.addAttribute("bIsRemoved", true);
+
+        return "index"; //index 페이지로 이동
     }
 }
 
