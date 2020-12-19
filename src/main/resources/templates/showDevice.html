@@ -44,7 +44,7 @@
             <td th:text="${device.getType()}"></td>
             <td th:text="${device.getNickname()}"></td>
             <td th:text="${device.getOwner()}"></td>
-            <td th:text="${device.getPower()}"></td>
+            <td th:text="${device.getPower() == 1 ? 'ON' : 'OFF' }"></td>
         </tr>
         <tbody>
         </tbody>
