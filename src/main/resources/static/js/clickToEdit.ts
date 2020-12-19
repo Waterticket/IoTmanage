@@ -19,7 +19,7 @@ function clickToDelete(id: number) {
 
     const answer = confirm("정말로 삭제하시겠습니까?");
 
-    if(!answer) return;
+    if (!answer) return;
 
     let form = document.createElement('form');
     form.setAttribute('method', 'post');
@@ -42,3 +42,27 @@ function getHiddenIdInput(id: number) {
     return hiddenField;
 }
 
+function checkRegisterSubmit() {
+    const typeSelectDOM = document.querySelectorAll("select")![0];
+    const typeData = typeSelectDOM.options[typeSelectDOM.selectedIndex].value;
+
+    if(typeData=="haveToSelect") {
+        alert("모듈 종류를 선택하세요");
+        return false;
+    }
+
+    const nameData = (<HTMLInputElement>document.getElementById("module_name-text")).value;
+    if(nameData=="") {
+        alert("모듈 이름을 입력하세요");
+        return false;
+    }
+
+    const ownerData = (<HTMLInputElement>document.getElementById("module_owner-text")).value;
+    if(ownerData=="") {
+        alert("소유자명을 입력하세요");
+        return false;
+    }
+
+
+    return true;
+}

@@ -8,17 +8,19 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/everywhere.css">
     <link rel="stylesheet" href="/css/registerDevice.css">
+
+    <script src="/js/clickToEdit.js"></script>
 </head>
 
 <body>
 <h1>기기 등록</h1>
 
 <main class="container">
-    <form class="grid" action="/register/submit" method="post">
+    <form class="grid" action="/register/submit" method="post" onsubmit="return checkRegisterSubmit()">
 
         <label for="module_type-select">모듈 종류 : </label>
         <select name="module_type" id="module_type-select">
-            <option selected disabled>선택해주세요</option>
+            <option selected hidden value="haveToSelect">선택해주세요</option>
             <option value="light">전등</option>
             <option value="window">창문</option>
             <option value="blind">블라인드</option>
@@ -34,13 +36,6 @@
         <input id="submit" type="submit" value="등록">
     </form>
 </main>
-
-<!-- <script>
-function checkValue() {
-
-}
-document.getElementById("submit").onsubmit = checkValue();
-</script> -->
 </body>
 
 </html>
