@@ -76,13 +76,11 @@ public class DeviceController {
         int id = Integer.parseInt(request.getParameter("module_id"));
 
         IoTDevice selectedDevice = deviceService.GetDeviceById(id);
+        model.addAttribute("deviceEngType", selectedDevice.getType());
 
-        IoTDevice korTypeDevice = selectedDevice;
-        DataProcess.changeModuleTypeToKorean(korTypeDevice);
-
-
+        DataProcess.changeModuleTypeToKorean(selectedDevice);
         model.addAttribute("selectedDevice", selectedDevice);
-        model.addAttribute("deviceKorType", korTypeDevice.getType());
+
         return "editDevice";
     }
 
