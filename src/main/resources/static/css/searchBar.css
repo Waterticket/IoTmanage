@@ -1,4 +1,9 @@
+/*searchBar 디자인 관련 css*/
+
+/*문자 인코딩 지정*/
 @charset "utf-8";
+
+/*flex로 가운데 정렬*/
 
 .searchBox {
     display: flex;

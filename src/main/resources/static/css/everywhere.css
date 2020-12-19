@@ -1,3 +1,6 @@
+/* 모든 페이지에 들어가는 공통적인 css*/
+
+/*문자 인코딩 설정*/
 @charset "utf-8";
 
 * {
@@ -9,12 +12,16 @@ h1 {
     font-size: 40pt;
 }
 
+/*flex를 이용한 가운데 정렬*/
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+/*table 관련 속성*/
+
+/*table item 사이의 간격 지정 및 기타 ui*/
 .device-list-table {
     border-spacing: 1vw;
 
@@ -22,11 +29,12 @@ h1 {
     border: black solid 1px;
 }
 
-
+/*table의 글자 가운데 정렬*/
 .device-list-table thead, tbody td, th {
     text-align: center;
 }
 
+/*마우스 올려놓으면 그림자*/
 .list-can-click:hover {
     box-shadow: 0px 0 5px 0 black;
 }

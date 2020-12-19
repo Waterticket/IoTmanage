@@ -1,3 +1,6 @@
+<!--메인 페이지-->
+<!--다른 페이지로 넘어가는 링크 존재 및 각 동작 수행 후 돌아오는 페이지-->
+
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 
@@ -8,6 +11,8 @@
     <link rel="stylesheet" href="/css/index.css">
 
     <script th:inline="javascript">
+
+        // 성공 알람.
         (() => {
             if ([[${bIsRegistered}]] == true)
                 alert("성공적으로 저장되었습니다.");
