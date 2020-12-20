@@ -66,6 +66,8 @@ public class DeviceController {
         String kindOfSearch = request.getParameter("how_to_search"); //검색 종류 (id / 기기 이름) 받아오기
         String value = request.getParameter("value_to_search"); //검색할 값 받아오기
 
+        model.addAttribute("how_to_search", kindOfSearch);
+        model.addAttribute("value_to_search", value);
 
         try {
 
