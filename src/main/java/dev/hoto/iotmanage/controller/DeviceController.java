@@ -42,9 +42,11 @@ public class DeviceController {
 
         deviceService.InsertDevice(device); // 디바이스 정보 저장
 
-        model.addAttribute("bIsRegistered", true); //메인페이지 alert를 위한 Attribute 저장
+        //alert 메세지를 위한 Attribute 저장(url, 메세지)
+        model.addAttribute("url", "/");
+        model.addAttribute("msg", "성공적으로 등록했습니다.");
 
-        return "index"; // 메인 페이지로 가기
+        return "alert"; //alert 페이지로 이동
     }
 
 
@@ -131,9 +133,11 @@ public class DeviceController {
             e.printStackTrace();
         }
 
-        model.addAttribute("bIsEdited", true); //메인페이지 alert를 위한 Attribute 저장
+        //alert 메세지를 위한 Attribute 저장(url, 메세지)
+        model.addAttribute("url", "/");
+        model.addAttribute("msg", "성공적으로 수정했습니다.");
 
-        return "index";
+        return "alert"; //alert 페이지로 이동
     }
 
     //삭제 button
@@ -143,9 +147,11 @@ public class DeviceController {
 
         deviceService.DeleteDeviceById(moduleId); // 해당 디바이스 제거
 
-        model.addAttribute("bIsRemoved", true); //메인페이지 alert를 위한 Attribute 저장
+        //alert 메세지를 위한 Attribute 저장(url, 메세지)
+        model.addAttribute("url", "/");
+        model.addAttribute("msg", "성공적으로 삭제했습니다.");
 
-        return "index"; //index 페이지로 이동
+        return "alert"; //alert 페이지로 이동
     }
 }
 
