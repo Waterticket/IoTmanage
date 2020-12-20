@@ -32,8 +32,8 @@ public class deviceDAO {
     // 데이터베이스 연결을 해제하는 메서드
     private void close() {
         try {
-            if (rs != null)
-                rs.close();
+            if (rs != null) // 각각 null이 아닐경우: 연결이 수립되어있는 경우
+                rs.close(); // 연결 끊기
             if (stmt != null)
                 stmt.close();
             if (conn != null)
@@ -45,7 +45,7 @@ public class deviceDAO {
 
     // 디바이스 리스트 가져오기
     public ResultSet getDevices() {
-        String sql = "SELECT * FROM iot_devices";
+        String sql = "SELECT * FROM iot_devices"; // iot_devices에서 모든 데이터를 가져온다
 
         if (this.connect()) {
             try {
@@ -55,7 +55,6 @@ public class deviceDAO {
                     // 데이터를 받아와 ResultSet에 저장
                 }
             } catch (SQLException e) {
-                // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
@@ -69,12 +68,13 @@ public class deviceDAO {
 
     //iot_devices 테이블에 데이터를 삽입하는 메서드
     public boolean InsertDevice(IoTDevice device){
-        boolean result = false;
+        boolean result = false; // 기본 리턴값은 false (실패)
 
         if(this.connect()){
             try {
-                String sql = "INSERT INTO iot_devices(type,nickname,owner,power) VALUES (?,?,?,?);";
-                PreparedStatement pstmt = conn.prepareStatement(sql); // 데이터를 넣기 위해 prepared statement 삽입
+                String sql = "INSERT INTO iot_devices(type,nickname,owner,power) VALUES (?,?,?,?);"; // iot_devices에 해당 값들을 집어넣음
+                                                                                                     // id는 auto_increment이기에 넣을 필요 없음
+                PreparedStatement pstmt = conn.prepareStatement(sql); // 데이터를 안전하게 넣기 위해 prepared statement 삽입
 
                 pstmt.setString(1, device.getType()); // 각 ?에 값을 집어 넣는다
                 pstmt.setString(2, device.getNickname());
@@ -110,9 +110,9 @@ public class deviceDAO {
             try {
                 String sql = "DELETE FROM iot_devices WHERE id = ?;"; // id가 같은 데이터 제거
                 PreparedStatement pstmt = conn.prepareStatement(sql);
-                pstmt.setInt(1, moduleId);
+                pstmt.setInt(1, moduleId); // 값 집어넣기
 
-                int r = pstmt.executeUpdate();
+                int r = pstmt.executeUpdate(); // DELETE문 이기에 executeUpdate
 
                 if(r>0){
                     result = true;
@@ -135,7 +135,7 @@ public class deviceDAO {
 
     // 디바이스 리스트 가져오기
     public ResultSet getDeviceById(int moduleId) {
-        String sql = "SELECT * FROM iot_devices WHERE id = ?";
+        String sql = "SELECT * FROM iot_devices WHERE id = ?"; // id가 같은 디바이스 가져오기
 
         if (this.connect()) {
             try {
@@ -162,12 +162,12 @@ public class deviceDAO {
     // 이름으로 디바이스 검색
     public ResultSet searchDevicesByName(String name)
     {
-        String sql = "SELECT * FROM iot_devices WHERE nickname LIKE ?";
+        String sql = "SELECT * FROM iot_devices WHERE nickname LIKE ?"; // 검색시에 검색어가 들어간 이름 찾기
 
         if (this.connect()) {
             try {
                 PreparedStatement pstmt = conn.prepareStatement(sql);
-                pstmt.setString(1, "%"+name+"%");
+                pstmt.setString(1, "%"+name+"%"); // 좌우 무슨 글자가 들어가던 상관없이 검색
 
                 if(pstmt != null){ // DB에 접속했을 경우
                     rs = pstmt.executeQuery();
@@ -193,7 +193,7 @@ public class deviceDAO {
 
         if(this.connect()){
             try {
-                String sql = "UPDATE iot_devices SET type = ?, nickname = ?, owner = ?, power = ? WHERE id = ?;";
+                String sql = "UPDATE iot_devices SET type = ?, nickname = ?, owner = ?, power = ? WHERE id = ?;"; // 해당 id를 가진 데이터를 수정
                 PreparedStatement pstmt = conn.prepareStatement(sql); // 데이터를 넣기 위해 prepared statement 삽입
 
                 pstmt.setString(1, device.getType()); // 각 ?에 값을 집어 넣는다

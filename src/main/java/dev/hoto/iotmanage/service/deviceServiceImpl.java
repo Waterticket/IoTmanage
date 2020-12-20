@@ -12,11 +12,12 @@ import java.util.List;
 @Service("deviceService")
 public class deviceServiceImpl implements deviceService{
     @Autowired
-    dev.hoto.iotmanage.deviceDAO deviceDAO; // DI 형식으로 사용하기 위해 선언
+    dev.hoto.iotmanage.deviceDAO deviceDAO; // DAO를 DI 형식으로 사용하기 위해 선언
 
+    @Override
     public List<IoTDevice> getDevices()
     {
-        ResultSet rs = null;
+        ResultSet rs = null; // 변수 초기 선언
         List<IoTDevice> list = null;
 
         rs = deviceDAO.getDevices();
@@ -47,18 +48,21 @@ public class deviceServiceImpl implements deviceService{
             throwables.printStackTrace();
         }
 
-        return list;
+        return list; // 디바이스 정보가 담긴 리스트 리턴
     }
 
+    @Override
     public boolean InsertDevice(IoTDevice device)
     {
         return deviceDAO.InsertDevice(device);
-    }
+    } // 디바이스 추가
 
-    public boolean DeleteDeviceById(int id) { return deviceDAO.DeleteDeviceById(id); }
+    @Override
+    public boolean DeleteDeviceById(int id) { return deviceDAO.DeleteDeviceById(id); } // id가 같은 디바이스 제거
 
-    public IoTDevice GetDeviceById(int id) {
-        ResultSet rs = deviceDAO.getDeviceById(id);
+    @Override
+    public IoTDevice GetDeviceById(int id) { // id가 같은 디바이스의 정보를 가져옴
+        ResultSet rs = deviceDAO.getDeviceById(id); // 해당 디바이스의 데이터를 ResultSet으로 가져옴
 
         // DTO 클래스 객체 생성
         IoTDevice device = new IoTDevice();
@@ -79,17 +83,18 @@ public class deviceServiceImpl implements deviceService{
         return device;
     }
 
-    public List<IoTDevice> searchDevicesByName(String name)
+    @Override
+    public List<IoTDevice> searchDevicesByName(String name) // 검색어가 포함된 이름이 있는 디바이스 리스트를 가져옴
     {
         ResultSet rs = null;
         List<IoTDevice> list = null;
 
-        rs = deviceDAO.searchDevicesByName(name);
+        rs = deviceDAO.searchDevicesByName(name); // 검색어를 포함한 이름을 가진 디바이스 목록을 ResultSet으로 가져옴
         if(rs == null) {
             // 값을 못불러옴
         }
 
-        // 리스트를 통해 데이터를 한번에 전송하기 위함
+        // 리스트를 통해 데이터를 한번에 전송하기 위해 리스트 생성
         list = new ArrayList<IoTDevice>();
 
         // 데이터를 읽어서 list에 저장
@@ -115,5 +120,6 @@ public class deviceServiceImpl implements deviceService{
         return list;
     }
 
-    public boolean ModifyDevice(IoTDevice device) { return deviceDAO.ModifyDevice(device); }
+    @Override
+    public boolean ModifyDevice(IoTDevice device) { return deviceDAO.ModifyDevice(device); } // 디바이스 정보 수정
 }
