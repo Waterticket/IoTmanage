@@ -1,0 +1,23 @@
+<!--alert 페이지-->
+<!--성공적으로 작동했을 경우 넘어오게 되는 페이지-->
+<!--알림을 출력한다-->
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>알림</title>
+
+
+    <script th:inline="javascript">
+        //넘어갈 url과 표시할 메세지를 받아온다.
+        const url = [[${url}]];
+        const msg = [[${msg}]];
+
+        alert(msg); //성공 알람
+        location.href = url; //받은 url로 넘어가기
+    </script>
+</head>
+<body>
+
+</body>
+</html>
