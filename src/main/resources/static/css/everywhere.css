@@ -34,6 +34,11 @@ h1 {
     text-align: center;
 }
 
+/* tbody 속 tr hover시 마우스 자연스럽게 */
+.device-list-table tbody tr {
+    cursor: pointer;
+}
+
 /*마우스 올려놓으면 그림자*/
 .list-can-click:hover {
     box-shadow: 0px 0 5px 0 black;
