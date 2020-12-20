@@ -66,18 +66,27 @@ public class DeviceController {
         String kindOfSearch = request.getParameter("how_to_search"); //검색 종류 (id / 기기 이름) 받아오기
         String value = request.getParameter("value_to_search"); //검색할 값 받아오기
 
+        model.addAttribute("how_to_search", kindOfSearch);
+        model.addAttribute("value_to_search", value);
 
         try {
 
             if (kindOfSearch.equals("searchNickname")) {
                 //기기 이름으로 검색하는 경우
                 List<IoTDevice> list = deviceService.searchDevicesByName(value); //DB에서 리스트 받아오기
+                DataProcess.changeModuleTypeToKorean(list);
                 model.addAttribute("deviceList", list); //table로 보여주기 위한 Attriute 저장
             } else if (kindOfSearch.equals("searchId")) {
                 //id로 검색하는 경우
                 int id = Integer.parseInt(value);
                 ArrayList list = new ArrayList<IoTDevice>();
                 IoTDevice device = deviceService.GetDeviceById(id); //DB에서 객체 받아오기
+
+                //type을 변경하지 않을 경우 DB에 한글로 값이 들어가는 문제를 해결하기 위함
+                model.addAttribute("deviceEngType", device.getType());
+
+                //type값을 한글로 변경
+                DataProcess.changeModuleTypeToKorean(device);
 
                 //null 값 처리
                 if (device.getId() != 0) {

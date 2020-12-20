@@ -20,13 +20,13 @@
         <!--        검색 방법 select-->
         <label for="how_to_search" hidden></label>
         <select name="how_to_search" id="how_to_search">
-            <option value="searchNickname">모듈 이름</option>
-            <option value="searchId">ID</option>
+            <option value="searchNickname" th:selected="${how_to_search=='searchNickname'}">모듈 이름</option>
+            <option value="searchId"  th:selected="${how_to_search=='searchId'}">ID</option>
         </select>
 
         <!--        검색할 값 입력-->
         <label for="value_to_search" hidden></label>
-        <input type="search" name="value_to_search" id="value_to_search">
+        <input type="search" name="value_to_search" id="value_to_search" th:value="${value_to_search}">
         <input type="submit" value="검색">
     </form>
 </div>
