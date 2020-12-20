@@ -1,4 +1,7 @@
+<!--기기 정보를 수정하고 삭제하는 페이지-->
+
 <!DOCTYPE html>
+<!--thymeleaf 사용-->
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -6,6 +9,7 @@
     <link rel="stylesheet" href="/css/everywhere.css">
     <link rel="stylesheet" href="/css/registerDevice.css">
 
+    <!--    typescript에서 js로 변환된 파일 사용-->
     <script src="/js/clickToEdit.js"></script>
 </head>
 <body>
@@ -13,15 +17,23 @@
 <h1>수정 및 삭제</h1>
 
 <main class="container">
-    <form class="grid" action="edit/submit" method="post">
+    <!--    기기 정보 수정 폼-->
+    <form class="grid" action="edit/submit" method="post" onsubmit="return checkEditSubmit();">
 
         <label for="module_id">id</label>
         <input name="module_id" id="module_id" th:placeholder="${selectedDevice.getId()}"
                th:value="${selectedDevice.getId()}" readonly>
 
+        <!--        실제 DB에 저장될 값은 영어로, 표시되는 것은 한글로 지정-->
         <label for="module_type">모듈종류</label>
-        <input type="text" name="module_type" id="module_type" th:placeholder="${selectedDevice.getType()}"
-               th:value="${selectedDevice.getType()}">
+        <select name="module_type" id="module_type">
+            <option selected hidden th:text="${selectedDevice.getType()}"
+                    th:value="${deviceEngType}"></option>
+            <option value="light">전등</option>
+            <option value="window">창문</option>
+            <option value="blind">블라인드</option>
+            <option value="gas">가스</option>
+        </select>
 
         <label for="module_name">모듈이름</label>
         <input type="text" name="module_name" id="module_name" th:placeholder="${selectedDevice.getNickname()}"
@@ -31,12 +43,17 @@
         <input type="text" name="module_owner" id="module_owner" th:placeholder="${selectedDevice.getOwner()}"
                th:value="${selectedDevice.getOwner()}">
 
+        <!--        ON/OFF를 select로 선택. 실제 DB에는 0,1로 저장-->
+        <!--        어떤 값이 default이냐에 따라 selected 되는 option이 달라짐-->
         <label for="module_power">ON/OFF</label>
-        <input type="text" name="module_power" id="module_power" th:placeholder="${selectedDevice.getPower()}"
-               th:value="${selectedDevice.getPower()}">
+        <select name="module_power" id="module_power">
+            <option value="1" th:selected="${selectedDevice.getPower()==1}">ON</option>
+            <option value="0" th:selected="${selectedDevice.getPower()==0}">OFF</option>
+        </select>
 
         <input type="submit" id="edit" value="수정">
 
+        <!--        삭제를 위한 버튼. thymeleaf로 함수에 인수 넣어줌-->
         <input type="button" id="delete" value="삭제" th:attr="onclick='clickToDelete('+${selectedDevice.getId()}+')'">
     </form>
 

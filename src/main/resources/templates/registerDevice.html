@@ -8,39 +8,36 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/css/everywhere.css">
     <link rel="stylesheet" href="/css/registerDevice.css">
+
+<!--    typescript에서 js로 변환된 파일 사용-->
+    <script src="/js/clickToEdit.js"></script>
 </head>
 
 <body>
-    <h1>기기 등록</h1>
+<h1>기기 등록</h1>
 
-    <main class="container">
-        <form class="grid" action="/register/submit" method="post">
+<main class="container">
+<!--    기기 생성하는 폼, submit하면 checkRegisterSubmit() 실행됨-->
+    <form class="grid" action="/register/submit" method="post" onsubmit="return checkRegisterSubmit()">
 
-            <label for="module_type-select">모듈 종류 : </label>
-            <select name="module_type" id="module_type-select">
-                <option selected disabled>선택해주세요</option>
-                <option value="light">전등</option>
-                <option value="window">창문</option>
-                <option value="blind">블라인드</option>
-                <option value="gas">가스</option>
-            </select>
+        <label for="module_type-select">모듈 종류 : </label>
+        <select name="module_type" id="module_type-select">
+            <option selected hidden value="haveToSelect">선택해주세요</option>
+            <option value="light">전등</option>
+            <option value="window">창문</option>
+            <option value="blind">블라인드</option>
+            <option value="gas">가스</option>
+        </select>
 
-            <label for="module_name-text">모듈 이름 : </label>
-            <input type="text" name="module_name" id="module_name-text" placeholder="ex) 거실 창문">
+        <label for="module_name-text">모듈 이름 : </label>
+        <input type="text" name="module_name" id="module_name-text" placeholder="ex) 거실 창문">
 
-            <label for="module_owner-text">소유자명 : </label>
-            <input type="text" name="module_owner" id="module_owner-text" placeholder="ex) 김영상">
+        <label for="module_owner-text">소유자명 : </label>
+        <input type="text" name="module_owner" id="module_owner-text" placeholder="ex) 김영상">
 
-            <input id="submit" type="submit" value="등록">
-        </form>
-    </main>
-
-    <!-- <script>
-    function checkValue() {
-        
-    }
-    document.getElementById("submit").onsubmit = checkValue();
-</script> -->
+        <input id="submit" type="submit" value="등록">
+    </form>
+</main>
 </body>
 
 </html>

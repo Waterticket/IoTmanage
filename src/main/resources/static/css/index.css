@@ -1,11 +1,16 @@
+/*index.html 페이지에만 사용되는 css*/
+
+/*문자 인코딩 지정*/
 @charset "utf-8";
 
+/*a 태그 모양 지정*/
 a {
   text-decoration: none;
   font-size: 16pt;
   margin: 1em 0 1em 0;
 }
 
+/*마우스를 위에 올리면 실행되는 코드*/
 a:hover {
   text-decoration: underline;
 }

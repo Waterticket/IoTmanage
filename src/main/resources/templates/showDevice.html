@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!--thymeleaf 사용-->
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -6,20 +7,24 @@
     <link rel="stylesheet" href="/css/everywhere.css">
     <link rel="stylesheet" href="/css/searchBar.css">
 
+    <!--    typescript에서 js로 변환된 파일 사용-->
     <script src="/js/clickToEdit.js"></script>
 </head>
 <body>
 
 <h1>기기 조회</h1>
 
+<!--검색창-->
 <div class="searchBox">
     <form class="search" action="/show/search" method="post">
+        <!--        검색 방법 select-->
         <label for="how_to_search" hidden></label>
         <select name="how_to_search" id="how_to_search">
             <option value="searchNickname">모듈 이름</option>
             <option value="searchId">ID</option>
         </select>
 
+        <!--        검색할 값 입력-->
         <label for="value_to_search" hidden></label>
         <input type="search" name="value_to_search" id="value_to_search">
         <input type="submit" value="검색">
@@ -28,6 +33,7 @@
 
 <main class="container">
 
+    <!--    thymeleaf 이용해서 list에 있는 내용 모두 출력-->
     <table class="device-list-table">
         <thead>
         <tr>
@@ -44,7 +50,8 @@
             <td th:text="${device.getType()}"></td>
             <td th:text="${device.getNickname()}"></td>
             <td th:text="${device.getOwner()}"></td>
-            <td th:text="${device.getPower()}"></td>
+            <!--DB의 값은 0,1이지만 표시는 영어로-->
+            <td th:text="${device.getPower() == 1 ? 'ON' : 'OFF' }"></td>
         </tr>
         <tbody>
         </tbody>
